@@ -12,8 +12,8 @@ function createBoard(grid) {
   for(i = 0; i < grid; i++){
     for(j = 0; j < grid; j++){
 
-      //set likelihood of mine to 20%
-      let mine = Math.random() >= 0.8;
+      //set likelihood of mine to 25%
+      let mine = Math.random() >= 0.75;
 
       board.cells[arr] = {row: i, col: j, isMine: mine, isMarked: false, hidden: true}
       arr++
@@ -25,17 +25,20 @@ function createBoard(grid) {
 //Create instance of board object
 let board = createBoard(5)
 
-function startGame () {
-  
-  for(var i = 0; i < board.cells.length; i++) {
-    board.cells[i].surroundingMines = countSurroundingMines(i)
-  }
-  // Don't remove this function call: it makes the game work!
-  lib.initBoard() 
+//while(true){
+  function startGame () {
+    
+    for(var i = 0; i < board.cells.length; i++) {
+      board.cells[i].surroundingMines = countSurroundingMines(i)
+    }
+    // Don't remove this function call: it makes the game work!
+    lib.initBoard() 
 
-  document.addEventListener('click', checkForWin)
-  document.addEventListener('contextmenu', checkForWin)
-}
+    document.addEventListener('click', checkForWin)
+    document.addEventListener('contextmenu', checkForWin)
+  }
+//}
+
 
 // Define this function to look for a win condition:
 //
@@ -74,5 +77,8 @@ function countSurroundingMines (cell) {
       count++;
     }
   }
+  //add count to cell
+  return count
 }
+
 
