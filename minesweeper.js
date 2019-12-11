@@ -1,16 +1,21 @@
 document.addEventListener('DOMContentLoaded', startGame)
 
 // Define your `board` object here!
-
-function createBoard(length) {
+function createBoard(grid) {
   
+  //create local variables
   var board = new Object()
   board.cells = []
   var arr = 0
 
-  for(i = 0; i < length; i++){
-    for(j = 0; j < length; j++){
-      board.cells[arr] = {row: i, col: j, isMine: true, isMarked: false, hidden: true}
+  //loop through grid row and col
+  for(i = 0; i < grid; i++){
+    for(j = 0; j < grid; j++){
+
+      //set likelihood of mine to 20%
+      let mine = Math.random() >= 0.8;
+
+      board.cells[arr] = {row: i, col: j, isMine: mine, isMarked: false, hidden: true}
       arr++
     }
   }
@@ -18,7 +23,7 @@ function createBoard(length) {
 }
 
 //Create instance of board object
-let board = createBoard(3)
+let board = createBoard(5)
 
 function startGame () {
   
